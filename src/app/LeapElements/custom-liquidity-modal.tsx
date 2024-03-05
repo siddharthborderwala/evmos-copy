@@ -26,18 +26,13 @@ const customElementsTheme: ThemeDefinition = {
 const CustomLiquidity = () => {
 
   const a = useChain("evmos");
-  // eslint-disable-next-line no-console
-  console.log("esto es a", a);
   const walletClient = useElementsWalletClient();
-  // eslint-disable-next-line no-console
-  console.log("wallet client", walletClient);
   const userAddress = a.address ? a.address : "";
   
   const connectWallet = async function (chainId: string | undefined) {
     a.openView();
     await a.connect();
-    // eslint-disable-next-line no-console
-    console.log("address", a.address);
+
   };
 
   const walletClientConfig = {
