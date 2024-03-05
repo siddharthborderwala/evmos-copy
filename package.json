@@ -1,0 +1,41 @@
+{
+  "name": "test-leap",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@cosmos-kit/coin98-extension": "^2.7.10",
+    "@cosmos-kit/compass-extension": "^2.4.12",
+    "@cosmos-kit/cosmostation-extension": "^2.7.10",
+    "@cosmos-kit/fin-extension": "^2.6.9",
+    "@cosmos-kit/frontier-extension": "^2.5.9",
+    "@cosmos-kit/keplr-extension": "^2.7.9",
+    "@cosmos-kit/keplr-mobile": "^2.6.9",
+    "@cosmos-kit/leap-extension": "^2.7.9",
+    "@cosmos-kit/leap-metamask-cosmos-snap": "^0.6.2",
+    "@cosmos-kit/omni-mobile": "^2.5.9",
+    "@cosmos-kit/react": "^2.10.11",
+    "@leapwallet/elements": "^0.12.8",
+    "chain-registry": "^1.28.6",
+    "cosmos-kit": "^2.9.2",
+    "next": "14.1.2",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.2",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
