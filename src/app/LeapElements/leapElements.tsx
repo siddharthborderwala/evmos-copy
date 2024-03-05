@@ -1,3 +1,5 @@
+"use client"
+
 import { ChainProvider } from "@cosmos-kit/react";
 import { Spinner } from "@interchain-ui/react";
 import dynamic from "next/dynamic";

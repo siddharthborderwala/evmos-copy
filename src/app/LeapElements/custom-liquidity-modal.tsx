@@ -1,12 +1,9 @@
-"use client";
-
 import { useState } from "react";
 import {
   CrossChainSwapsTab,
   BridgeUSDCTab,
   SwapTab,
   TransferTab,
-  //LiquidityView,
   ThemeContextProvider,
   ThemeDefinition,
   WalletClientContextProvider,

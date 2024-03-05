@@ -20,6 +20,7 @@
     "@cosmos-kit/leap-metamask-cosmos-snap": "^0.6.2",
     "@cosmos-kit/omni-mobile": "^2.5.9",
     "@cosmos-kit/react": "^2.10.11",
+    "@interchain-ui/react": "^1.22.1",
     "@leapwallet/elements": "^0.12.8",
     "chain-registry": "^1.28.6",
     "cosmos-kit": "^2.9.2",
