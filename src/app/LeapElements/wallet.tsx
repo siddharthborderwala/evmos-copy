@@ -3,7 +3,6 @@ import { useWalletClient } from "@cosmos-kit/react";
 import { WalletClientContext } from "@cosmos-kit/core";
 import React from "react";
 import { SignDoc } from "cosmjs-types/cosmos/tx/v1beta1/tx";
-
 import { StdSignDoc } from "@cosmjs/amino";
 
 enum NETWORK {

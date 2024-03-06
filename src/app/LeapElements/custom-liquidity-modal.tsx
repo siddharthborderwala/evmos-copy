@@ -1,9 +1,15 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { useState } from "react";
+// import { useChains } from "@cosmos-kit/react";
+// import { WalletConnectProvider } from "@walletconnect/web3-provider";
 import {
   CrossChainSwapsTab,
   BridgeUSDCTab,
   SwapTab,
   TransferTab,
+  //LiquidityView,
   ThemeContextProvider,
   ThemeDefinition,
   WalletClientContextProvider,
@@ -24,15 +30,12 @@ const customElementsTheme: ThemeDefinition = {
 };
 
 const CustomLiquidity = () => {
-
-  const a = useChain("evmos");
+  const { openView, address } = useChain("evmos");
   const walletClient = useElementsWalletClient();
-  const userAddress = a.address ? a.address : "";
-  
-  const connectWallet = async function (chainId: string | undefined) {
-    a.openView();
-    await a.connect();
-
+  const userAddress = address;
+  // eslint-disable-next-line @typescript-eslint/require-await
+  const connectWallet = async () => {
+    openView();
   };
 
   const walletClientConfig = {
