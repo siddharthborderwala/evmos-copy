@@ -1,11 +1,20 @@
-import { type WalletClient } from "@leapwallet/elements";
-import { useWalletClient } from "@cosmos-kit/react";
+import type {
+  WalletClient,
+  WalletClientContext as LeapWalletClientContext,
+} from "@leapwallet/elements";
+import {
+  useWalletClient,
+  useChain,
+  useManager,
+  useWallet,
+} from "@cosmos-kit/react";
 import { WalletClientContext } from "@cosmos-kit/core";
 import React from "react";
 import { SignDoc } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import { StdSignDoc } from "@cosmjs/amino";
+import { chains } from "chain-registry";
 
-enum NETWORK {
+enum Network {
   MAINNET = "mainnet",
   TESTNET = "testnet",
 }
@@ -29,8 +38,6 @@ export const useElementsWalletClient = (): WalletClient => {
           isNanoLedger: !!result.isNanoLedger,
         };
       },
-      // NOTE: walletconect requiere get signer async
- 
       getSigner: async (chainId: string) => {
         const signer = client!.getOfflineSignerDirect!(chainId);
         const aminoSigner = client!.getOfflineSignerAmino!(chainId);
@@ -54,11 +61,38 @@ export const useElementsWalletClient = (): WalletClient => {
               signed: res.signed,
             };
           },
-          network: NETWORK.MAINNET, // to enable testnet in elements
         };
       },
     };
   }, [client]);
 
   return walletClient;
+};
+
+export const useElementsWalletClientConfig = (): LeapWalletClientContext => {
+  const walletClient = useElementsWalletClient();
+  const { address } = useChain("osmosis");
+  const { getWalletRepo } = useManager();
+  const { mainWallet } = useWallet();
+
+  const walletStatus = mainWallet?.walletStatus;
+
+  return React.useMemo(() => {
+    return {
+      userAddress: walletStatus === "Connected" ? address : undefined,
+      walletClient,
+      connectWallet: (chainId: unknown) => {
+        let _chainId = chainId;
+        if (typeof chainId !== "string") {
+          _chainId = "osmosis-1";
+        }
+        const chain = chains.find((c) => c.chain_id === _chainId);
+        if (!chain) {
+          throw new Error(`Chain ${chainId} not supported`);
+        }
+        return getWalletRepo(chain.chain_name).connect();
+      },
+      network: Network.MAINNET,
+    } as const;
+  }, [address, getWalletRepo, walletStatus, walletClient]);
 };

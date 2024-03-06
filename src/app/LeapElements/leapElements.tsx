@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ChainProvider } from "@cosmos-kit/react";
 import { Spinner } from "@interchain-ui/react";
@@ -12,6 +12,7 @@ const CustomLiquidityModal = dynamic(() => import("./custom-liquidity-modal"), {
       <Spinner color="purple" />
     </div>
   ),
+  ssr: false,
 });
 
 const LeapElements = () => {
